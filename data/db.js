@@ -122,7 +122,7 @@ async function getProjectResources(projectId) {
   try {
     if (projectId) {
       return await db
-        .select('r.name', 'r.description')
+        .distinct('r.name', 'r.description')
         .from('projects_resources')
         .join('resources as r', 'r.id', 'projects_resources.resource_id')
         .where({ project_id: projectId });
